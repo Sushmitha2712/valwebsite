@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6f2;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header, footer {
+            background-color: #d6336c;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d6336c;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            text-align: justify;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .slideshow {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .form-section {
+            margin-top: 30px;
+        }
+
+        h2 {
+            color: #d6336c;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            background-color: #d6336c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .btn:hover {
+            background-color: #b82254;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Happy Valentine's Day! 💖
+    </header>
+
+    <div class="container">
+        <h1>Happy Valentine's Day, My Love! 💖</h1>
+        <p>You are the most amazing person in my life. I am so grateful for you every single day.</p>
+
+        <!-- Slideshow of Pictures -->
+        <div class="slideshow">
+            <img src="{{ url_for('static', filename='images/image1.jpeg') }}" alt="Our Picture 1" class="slide">
+            <img src="{{ url_for('static', filename='images/image2.jpeg') }}" alt="Our Picture 2" class="slide">
+            <img src="{{ url_for('static', filename='images/image3.jpeg') }}" alt="Our Picture 3" class="slide">
+            <img src="{{ url_for('static', filename='images/image4.jpeg') }}" alt="Our Picture 4" class="slide">
+            <img src="{{ url_for('static', filename='images/image5.jpeg') }}" alt="Our Picture 5" class="slide">
+            <img src="{{ url_for('static', filename='images/image6.jpeg') }}" alt="Our Picture 6" class="slide">
+        </div>
+
+        <!-- Surprise Button Section -->
+        <div class="form-section">
+            <form action="/surprise" method="POST">
+                <h2>Be My Valentine Forever 💖</h2>
+                <button type="submit" class="btn">Yesssss</button>
+            </form>
+        </div>
+
+        <!-- Audio Player -->
+        <audio id="background-music" autoplay loop>
+            <source src="{{ url_for('static', filename='music/music.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <footer>
+        Made with 💖 for Valentine's Day
+    </footer>
+
+    <!-- JavaScript for Slideshow -->
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+</body>
+</html>
